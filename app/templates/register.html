@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Register — TodoList{% endblock %}
+{% block content %}
+<div class="card center-card">
+<h2>Create account</h2>
+<form method="post">
+{{ form.hidden_tag() }}
+<label>Username</label>
+{{ form.name(class_='input') }}
+<label>Email</label>
+{{ form.email(class_='input') }}
+<label>Password</label>
+{{ form.password(class_='input') }}
+<div class="form-row">
+{{ form.register(class_='btn primary') }}
+<a href="{{ url_for('auth.login') }}" class="link muted">Already have an account?</a>
+</div>
+</form>
+</div>
+{% endblock %}

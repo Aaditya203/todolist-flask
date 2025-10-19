@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard — TodoList{% endblock %}
+{% block content %}
+<div class="card">
+<h2>Dashboard</h2>
+<p>Welcome back, {{ current_user.name }}. Use the tasks page to manage your todos.</p>
+<a class="btn" href="{{ url_for('task.view_task') }}">View Tasks</a>
+</div>
+{% endblock %}

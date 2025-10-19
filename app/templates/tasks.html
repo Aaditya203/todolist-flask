@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Tasks — TodoList{% endblock %}
+{% block content %}
+<div class="split">
+<section class="left">
+<div class="card">
+<h3>Your tasks</h3>
+{% if tasks %}
+<ul class="task-list">
+{% for t in tasks %}
+<li class="task-row">
+<form method="post" action="{{ url_for('task.toggle_status', task_id=t.id) }}">
+  <button class="status status-{{ t.status|lower }}" type="submit">
+        {{ t.status }}
+    </button>
+</form>
+<div class="title">{{ t.title }}</div>
+</li>
+{% endfor %}
+</ul>
+{% else %}
+<p class="muted">No tasks yet — add your first task!</p>
+{% endif %}
+</div>
+</section>
+<aside class="right">
+<div class="card">
+<h3>Add task</h3>
+<form method="post" action="{{ url_for('task.add_task') }}">
+<input class="input" name="title" placeholder="Task title" />
+<div class="form-row">
+<button class="btn primary">Add</button>
+</div>
+</form>
+<form method="post" action="{{ url_for('task.delete_task') }}" style="margin-top:12px;">
+<button class="btn ghost">Delete all tasks</button>
+</form>
+</div>
+</aside>
+</div>
+{% endblock %}
